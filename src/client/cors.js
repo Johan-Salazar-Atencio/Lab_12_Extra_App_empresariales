@@ -6,6 +6,6 @@
 // TODO: authorize ONLY the origin of this project: http://localhost:5173
 //       (scheme + host + port, no trailing slash, no wildcard "*", no other ports).
 export const corsPolicy = {
-  allowedOrigins: [],
+  allowedOrigins: ["http://localhost:5173"],
   allowCredentials: false,
 };
