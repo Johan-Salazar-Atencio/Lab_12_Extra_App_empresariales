@@ -27,6 +27,8 @@ export default function useExams() {
   const remove = useCallback(async (id) => {
     try {
       await deleteExam(id);
+      setExams((current) => current.filter((exam) => exam.id !== id));
+      return true;
     } catch (err) {
       console.error("Error deleting exam", err);
     }
