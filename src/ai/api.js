@@ -8,8 +8,8 @@ export const api = axios.create({
   headers: { Accept: "application/json" },
 });
 
-export function listExams() {
-  return api.get("/exams/").then((response) => response.data);
+export function listExams({ signal } = {}) {
+  return api.get("/exams/", { signal }).then((response) => response.data);
 }
 
 export function createExam(title) {

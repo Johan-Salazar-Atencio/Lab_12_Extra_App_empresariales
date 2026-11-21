@@ -11,18 +11,26 @@ export default function useExams() {
   const creating = useRef(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    let cancelled = false;
     setStatus("loading");
     setError(null);
-    listExams()
+    listExams({ signal: controller.signal })
       .then((data) => {
+        if (cancelled) return;
         setExams(data);
         setStatus("ready");
       })
       .catch((err) => {
+        if (cancelled) return;
         setExams([]);
         setError(describeError(err));
         setStatus("error");
       });
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
   }, [attempt]);
 
   const reload = useCallback(() => setAttempt((n) => n + 1), []);
