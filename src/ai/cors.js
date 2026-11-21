@@ -1,4 +1,4 @@
 export const corsPolicy = {
-  allowedOrigins: ["*"],
+  allowedOrigins: ["http://localhost:5173"],
   allowCredentials: false,
 };
